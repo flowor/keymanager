@@ -45,9 +45,9 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setServerLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.createDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -172,11 +172,19 @@
             this.setServerLocationToolStripMenuItem.Text = "Select Database";
             this.setServerLocationToolStripMenuItem.Click += new System.EventHandler(this.SetServerLocationToolStripMenuItem_Click);
             // 
+            // createDatabaseToolStripMenuItem
+            // 
+            this.createDatabaseToolStripMenuItem.Name = "createDatabaseToolStripMenuItem";
+            this.createDatabaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createDatabaseToolStripMenuItem.Text = "Create Database";
+            this.createDatabaseToolStripMenuItem.Click += new System.EventHandler(this.CreateDatabaseToolStripMenuItem_Click);
+            // 
             // colorsToolStripMenuItem
             // 
             this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
             this.colorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.colorsToolStripMenuItem.Text = "Colors";
+            this.colorsToolStripMenuItem.Click += new System.EventHandler(this.ColorsToolStripMenuItem_Click);
             // 
             // progressBar1
             // 
@@ -186,13 +194,6 @@
             this.progressBar1.Size = new System.Drawing.Size(762, 23);
             this.progressBar1.TabIndex = 3;
             this.progressBar1.Visible = false;
-            // 
-            // createDatabaseToolStripMenuItem
-            // 
-            this.createDatabaseToolStripMenuItem.Name = "createDatabaseToolStripMenuItem";
-            this.createDatabaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.createDatabaseToolStripMenuItem.Text = "Create Database";
-            this.createDatabaseToolStripMenuItem.Click += new System.EventHandler(this.CreateDatabaseToolStripMenuItem_Click);
             // 
             // mainForm
             // 

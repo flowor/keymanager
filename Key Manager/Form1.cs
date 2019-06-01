@@ -313,16 +313,19 @@ namespace Key_Manager
                     for (int r = 2; r <= rowCount; r++)
                     {
 
-                        command = new SQLiteCommand("INSERT INTO keylist VALUES (@RoomSpace,@KeyCodeRM,@KeyCodeAPT,@StudentID,@LastName,@FirstName,@DateStamp,@status)", m_dbConnection);
-                        command.Parameters.AddWithValue("@RoomSpace", range.Cells[r, 1].Value2.ToString());
-                        command.Parameters.AddWithValue("@KeyCodeRM", range.Cells[r, 2].Value2.ToString());
-                        command.Parameters.AddWithValue("@KeyCodeAPT", range.Cells[r, 3].Value2.ToString());
-                        command.Parameters.AddWithValue("@StudentID", range.Cells[r, 4].Value2.ToString());
-                        command.Parameters.AddWithValue("@LastName", range.Cells[r, 5].Value2.ToString());
-                        command.Parameters.AddWithValue("@FirstName", range.Cells[r, 6].Value2.ToString());
+                    if (Convert.ToString(range.Cells[r, 1].Value2) == null)
+                        break;
 
-                        command.Parameters.AddWithValue("@DateStamp", DateTime.FromOADate(double.Parse(range.Cells[r, 7].Value2.ToString())).ToString("yyyy-MM-dd HH:mm:ss.fff"));
-                        command.Parameters.AddWithValue("@status", range.Cells[r, 8].Value2.ToString());
+                        command = new SQLiteCommand("INSERT INTO keylist VALUES (@RoomSpace,@KeyCodeRM,@KeyCodeAPT,@StudentID,@LastName,@FirstName,@DateStamp,@status)", m_dbConnection);
+                        command.Parameters.AddWithValue("@RoomSpace", Convert.ToString(range.Cells[r, 1].Value2));
+                        command.Parameters.AddWithValue("@KeyCodeRM", Convert.ToString(range.Cells[r, 2].Value2));
+                        command.Parameters.AddWithValue("@KeyCodeAPT", Convert.ToString(range.Cells[r, 3].Value2));
+                        command.Parameters.AddWithValue("@StudentID", Convert.ToString(range.Cells[r, 4].Value2));
+                        command.Parameters.AddWithValue("@LastName", Convert.ToString(range.Cells[r, 5].Value2));
+                        command.Parameters.AddWithValue("@FirstName", Convert.ToString(range.Cells[r, 6].Value2));
+
+                        command.Parameters.AddWithValue("@DateStamp", DateTime.FromOADate(Convert.ToDouble(range.Cells[r, 7].Value2)).ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                        command.Parameters.AddWithValue("@status", Convert.ToString(range.Cells[r, 8].Value2));
 
                         command.ExecuteNonQuery();
                     }
@@ -352,15 +355,72 @@ namespace Key_Manager
             if (openDlg.ShowDialog() == DialogResult.OK && openDlg.FileName != "")
             {
 
-                // Try to connect and check if keylist table exists. If not, error, otherwise update propreties
+                // Try to connect and check if keylist table exists. If not, error, otherwise update properties
 
                 Properties.Settings.Default.dbPath = openDlg.FileName;
-                MessageBox.Show("Please restart application to view changes", "Updated Database");
+                Properties.Settings.Default.Save();
+                rePopulateListFromDB(listKeys);
             }
 
         }
 
         private void CreateDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            SaveFileDialog saveDlg = new SaveFileDialog();
+            saveDlg.Filter = "sqlite database|*.sqlite";
+            saveDlg.RestoreDirectory = true;
+            saveDlg.Title = "Location to save database";
+            saveDlg.DefaultExt = "sqlite";
+            saveDlg.AddExtension = true;
+            
+            if (saveDlg.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    SQLiteConnection.CreateFile(saveDlg.FileName);
+                    Properties.Settings.Default.dbPath = saveDlg.FileName;
+                    Properties.Settings.Default.Save();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                }
+                
+                SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=" + Properties.Settings.Default.dbPath + ";Version=3;");
+
+                try
+                {
+                    m_dbConnection.Open();
+
+                    string sql = @"CREATE TABLE `keylist` 
+                            ( `RoomSpace` VARCHAR(11) NOT NULL,
+	                          `KeyCodeRm` VARCHAR(8) NOT NULL,
+	                          `KeyCodeApt` VARCHAR(8) NOT NULL,
+	                          `StudentId` VARCHAR(8) NOT NULL,
+	                          `NameLast` VARCHAR(16) NOT NULL,
+	                          `NameFirst` VARCHAR(16) NOT NULL,
+	                          `DateStamp` TIMESTAMP NOT NULL,
+                              `status` TINYINT NOT NULL,
+                               PRIMARY KEY(`RoomSpace`)
+                            );";
+
+                    SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                }
+                finally
+                {
+                    m_dbConnection.Close();
+                    rePopulateListFromDB(listKeys);
+                }
+            }
+        }
+
+        private void ColorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
