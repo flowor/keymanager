@@ -26,51 +26,6 @@ namespace Key_Manager
         private void Form1_Load(object sender, EventArgs e)
         {
             ResizeListViewColumns(listKeys);
-
-            List<ListViewItem> listViewItems = new List<ListViewItem>();
-
-            listViewItems.Add(new ListViewItem(new string[] {
-                "HK-3101",
-                "31756",
-                "8-1",
-                "01685290",
-                "Rose",
-                "Timothy",
-                "5/25/2019"
-            }, -1, Color.Empty, Properties.Settings.Default.colorDefault, null));
-
-            listViewItems.Add(new ListViewItem(new string[] {
-                "HK-3102",
-                "31757",
-                "8-1",
-                "01685260",
-                "Toes",
-                "Jimothy",
-                "5/26/2019"
-            }, -1, Color.Empty, Properties.Settings.Default.colorDefault, null));
-
-            listViewItems.Add(new ListViewItem(new string[] {
-                "HK-3103",
-                "31758",
-                "8-1",
-                "01685160",
-                "Joseph",
-                "Jerry",
-                "5/26/2019"
-            }, -1, Color.Empty, Properties.Settings.Default.colorDefault, null));
-
-            listViewItems.Add(new ListViewItem(new string[] {
-                "HK-3104",
-                "31759",
-                "8-1",
-                "01685110",
-                "Rohrer",
-                "Brad",
-                "5/26/2019"
-            }, -1, Color.Empty, Properties.Settings.Default.colorAptOut, null));
-
-
-            listKeys.Items.AddRange(listViewItems.ToArray());
             rePopulateListFromDB(listKeys);
         }
 
