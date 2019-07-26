@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="colorAptOut" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">255, 128, 128</Value>
+      <Value Profile="(Default)">255, 192, 128</Value>
     </Setting>
     <Setting Name="colorRmOut" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Yellow</Value>
@@ -12,7 +12,10 @@
       <Value Profile="(Default)">Window</Value>
     </Setting>
     <Setting Name="dbPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data.sqlite</Value>
+      <Value Profile="(Default)">init</Value>
+    </Setting>
+    <Setting Name="colorBothOut" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 128, 128</Value>
     </Setting>
   </Settings>
 </SettingsFile>

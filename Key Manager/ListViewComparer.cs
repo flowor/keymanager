@@ -1,5 +1,4 @@
 ﻿/**
- * Credit where credit is due
  * http://csharphelper.com/blog/2014/09/sort-a-listview-using-the-column-you-click-in-c/
  */
 

@@ -25,7 +25,7 @@ namespace Key_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("255, 128, 128")]
+        [global::System.Configuration.DefaultSettingValueAttribute("255, 192, 128")]
         public global::System.Drawing.Color colorAptOut {
             get {
                 return ((global::System.Drawing.Color)(this["colorAptOut"]));
@@ -61,13 +61,25 @@ namespace Key_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data.sqlite")]
+        [global::System.Configuration.DefaultSettingValueAttribute("init")]
         public string dbPath {
             get {
                 return ((string)(this["dbPath"]));
             }
             set {
                 this["dbPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255, 128, 128")]
+        public global::System.Drawing.Color colorBothOut {
+            get {
+                return ((global::System.Drawing.Color)(this["colorBothOut"]));
+            }
+            set {
+                this["colorBothOut"] = value;
             }
         }
     }
